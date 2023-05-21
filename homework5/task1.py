@@ -10,13 +10,7 @@ def letter_stat(our_str):
     """ Возвращает словарь, где в качестве ключей буквы, а значения - количество этих букв в строке
             :param: our_str - строка
             :return: словарь """
-    letters_dict = {}
-    for letter in our_str:
-        iterator = 0
-        for letter2 in our_str:
-            if letter == letter2:
-                iterator += 1
-        letters_dict[letter] = iterator
+    letters_dict = {symbol: our_str.count(symbol) for symbol in our_str}
     return letters_dict
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
