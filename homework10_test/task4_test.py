@@ -22,7 +22,6 @@ def test_fixture():
     print(f"\nTest finished in {end_time - start_time:.2f} seconds.")
 
 
-# tests.py
 class TestClass:
 
     def test_one(self, test_fixture):
