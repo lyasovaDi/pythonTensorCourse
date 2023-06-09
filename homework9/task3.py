@@ -16,7 +16,6 @@ for line in mass1:
         mass2.append(summ)
         summ = 0
 
-sort_mass = sorted(mass2)
-three_most_expensive_purchases = sort_mass[-1] + sort_mass[-2] + sort_mass[-3]
+three_most_expensive_purchases = sum(sorted(mass2, reverse=True)[:3])
 
 assert three_most_expensive_purchases == 202346
