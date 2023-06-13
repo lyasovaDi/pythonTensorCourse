@@ -1,17 +1,14 @@
 import datetime
 
-file_log = "log.txt"
 
+def func_log(file_log='log.txt'):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            with open(file_log, 'a') as f:
+                f.write(f"{func.__name__} вызвана {datetime.now().strftime('%d.%m %H:%M:%S')}\n")
+            return func(*args, **kwargs)
 
-def func_log(func):
-    def wrapper():
-        with open(file_log, 'a') as f:
-            f.write(f"{func.__name__} caused by {datetime.datetime.now().strftime('%d.%m %H:%M:%S')}\n")
-        return func
+        return wrapper
 
-    return wrapper()
+    return decorator
 
-
-@func_log
-def print_hello():
-    print("hello")
