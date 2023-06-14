@@ -42,11 +42,10 @@ try:
     assert contacts.is_displayed(), 'Блок контактов не отображается'
     contacts.click()
     contacts2 = driver.find_element(By.CSS_SELECTOR, '.NavigationPanels-SubMenu__headTitle')
-    driver.execute_script("arguments[0].scrollIntoView();", contacts2)
     assert contacts2.is_displayed(), 'Не раскрылся список действий'
     contacts2.click()
     sleep(3)
-    plus = driver.find_element(By.CSS_SELECTOR, '.icon-RoundPlus')
+    plus = driver.find_element(By.CSS_SELECTOR, '[data-qa="sabyPage-addButton"]')
     assert plus.is_displayed(), 'Не отображается кнопка +'
     plus.click()
     sleep(3)
@@ -60,7 +59,7 @@ try:
     text = driver.find_element(By.CSS_SELECTOR, ' .textEditor_Viewer__Paragraph')
     text.send_keys(sends_message)
     sleep(2)
-    send = driver.find_element(By.CSS_SELECTOR, '.icon-BtArrow')
+    send = driver.find_element(By.CSS_SELECTOR, '[data-qa="msg-send-editor__send-button"]')
     assert send.is_displayed(), 'Нет кнопки "отправить"'
     send.click()
     sleep(2)
@@ -69,11 +68,8 @@ try:
     action_chains = ActionChains(driver)
     action_chains.move_to_element(message)
     action_chains.perform()
-    delete_button = driver.find_element(By.XPATH, ".//p[contains(text(),"
-                                                  " '" + sends_message + "')]/../../../../../../..//"
-                                                                         "div[contains(@data-qa, 'deleteToArchive')]")
+    delete_button = driver.find_element(By.CSS_SELECTOR, ".controls-itemActionsV__action_style_delete")
     delete_button.click()
-    sleep(3)
     assert not check_element_present_by_xpath(".//p[contains(text() , '" + sends_message + "')]"), \
         "Cообщение НЕ удалено"
 
